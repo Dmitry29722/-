@@ -1,7 +1,5 @@
 package main;
 
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Main {
 	private static Writer writer;
@@ -12,18 +10,16 @@ public class Main {
 	public static StringBuffer book = new StringBuffer("p");
 
 	public static void main(String[] args) throws InterruptedException {
-		 for (int i = 0; i <2; i++) {
+		 for (int i = 0; i <5; i++) {
 			writer =new Writer();
 			reader=new Reader();
 		 	threadR=new Thread(reader);
-		 	threadR.setName("Читатель");
+		 	threadR.setName("Читатель"+i);
 			threadW=new Thread(writer);
-			threadW.setName("Писатель");
+			threadW.setName("Писатель"+i);
 			threadW.start();
-			threadW.join();
 			threadR.start();
-			
-
+		
 		 }
 	}
 
